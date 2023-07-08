@@ -5,21 +5,21 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : MonoBehaviour
 {
-    enum State { Walk, Jump }
+    public enum State { Walk, Jump }
 
     public float speed = 10;
     public float jump = 30;
     public float coyoteTime = 0.1f;
     public float jumpTime = 1;
     public float jumpHeight = 3;
-    public float lowGravityScale = 0.5f;
+    public float lowFallSpeed = 1f;
     public AnimationCurve curve;
 
     Rigidbody2D body;
     float timer = 0.0f;
     float lastCurveValue;
 
-    State state = State.Walk;
+    public State state = State.Walk;
 
     void Start()
     {
@@ -51,11 +51,12 @@ public class CharacterController : MonoBehaviour
 
         if (state == State.Walk) {
             if (Input.GetAxis("Jump") > 0.01f) {
-                body.gravityScale = lowGravityScale;
+                body.gravityScale = 0;
+                vertical = -lowFallSpeed;
                 if (timer > 0) {
                     lastCurveValue = curve.Evaluate(0);
-                    timer = 0;
                     state = State.Jump;
+                    timer = 0;
                     body.gravityScale = 0;
                     vertical = 0;
                 }
@@ -69,6 +70,7 @@ public class CharacterController : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D collision)
     {
+        if (collision.isTrigger) return;
         if (state == State.Walk)
             timer = coyoteTime;
     }
