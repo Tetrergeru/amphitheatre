@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MoodController : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class MoodController : MonoBehaviour
             }
             foreach (var c in collisions)
                 EnableState(c, state);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
 
         var sprite = GetComponent<SpriteRenderer>();
