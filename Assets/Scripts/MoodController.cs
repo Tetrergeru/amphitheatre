@@ -6,6 +6,9 @@ using UnityEngine.SceneManagement;
 
 public class MoodController : MonoBehaviour
 {
+    public Color SadColor = new Color(0, 0, 0);
+    public Color HappyColor = new Color(1, 1, 0.5f, 0.5f);
+
     public enum State { Neutral, Sad, Happy }
     State state = State.Neutral;
 
@@ -36,8 +39,8 @@ public class MoodController : MonoBehaviour
         switch (state)
         {
             case State.Neutral: sprite.color = new Color(0, 0, 0, 0); break;
-            case State.Happy: sprite.color = new Color(1, 1, 0.5f, 0.5f); break;
-            case State.Sad: sprite.color = new Color(0, 0, 0); break;
+            case State.Happy: sprite.color = HappyColor; break;
+            case State.Sad: sprite.color = SadColor; break;
         }
     }
 
