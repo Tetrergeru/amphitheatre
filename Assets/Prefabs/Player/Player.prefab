@@ -156,7 +156,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 4efe887a451b2b84c98e106e587541dd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -290,7 +290,7 @@ Transform:
   - {fileID: 8205397121489200517}
   - {fileID: 3730483019232926684}
   - {fileID: 3025810814047473951}
-  - {fileID: 2228652751915158286}
+  - {fileID: 3690627194570503213}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -357,7 +357,7 @@ MonoBehaviour:
   jump: 5
   coyoteTime: 0.2
   jumpTime: 0.2
-  jumpHeight: 3
+  jumpHeight: 5
   lowFallSpeed: 3
   curve:
     serializedVersion: 2
@@ -600,7 +600,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!1001 &1562952838299379524
+--- !u!1001 &4065280883829577831
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -655,28 +655,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7993357468338006345, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
+      propertyPath: Animator
+      value: 
+      objectReference: {fileID: 685687570353738380}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
---- !u!1 &2228652751915158272 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 818945457053789252, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
-  m_PrefabInstance: {fileID: 1562952838299379524}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &5780209231918212979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2228652751915158272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29b0d5178d684854284cae3a15f1ef30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MoodMaterial: {fileID: 2100000, guid: d811258706fcfc148bc6e5cb27c0732a, type: 2}
---- !u!4 &2228652751915158286 stripped
+--- !u!4 &3690627194570503213 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 818945457053789258, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
-  m_PrefabInstance: {fileID: 1562952838299379524}
+  m_PrefabInstance: {fileID: 4065280883829577831}
   m_PrefabAsset: {fileID: 0}
