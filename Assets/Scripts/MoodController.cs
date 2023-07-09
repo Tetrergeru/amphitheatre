@@ -6,51 +6,110 @@ using UnityEngine.SceneManagement;
 
 public class MoodController : MonoBehaviour
 {
-    public Material MoodMaterial;
+    private const string MoodSlider = "_SadToHappy";
+    private const string CutSlider = "_Cut";
 
-    private const string MoodSlider = "SadToHappy";
-
-    public enum State { Neutral, Sad, Happy }
+    public enum State
+    {
+        Neutral,
+        Sad,
+        Transit,
+        Happy,
+    }
     State state = State.Neutral;
 
     HashSet<Collider2D> collisions = new HashSet<Collider2D>();
 
     void Update()
     {
+        var sprite = GetComponent<SpriteRenderer>();
+
+        if (state == State.Neutral)
+        {
+            sprite.color = new Color(1, 1, 1, 0);
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             foreach (var c in collisions)
                 DisableState(c, state);
             switch (state)
             {
-                case State.Neutral: state = State.Happy; break;
-                case State.Happy: state = State.Sad; break;
-                case State.Sad: state = State.Happy; break;
+                case State.Neutral:
+                    StartCoroutine(FirstState(sprite, State.Happy));
+                    break;
+
+                case State.Happy:
+                    StartCoroutine(ChangeState(sprite, State.Sad));
+                    break;
+
+                case State.Sad:
+                    StartCoroutine(ChangeState(sprite, State.Happy));
+                    break;
             }
-            foreach (var c in collisions)
-                EnableState(c, state);
+        }
+
+        if (state != State.Transit)
+        {
+            SetCut(sprite, 0);
         }
 
         if (Input.GetKeyDown(KeyCode.R))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
+    }
 
-        var sprite = GetComponent<SpriteRenderer>();
-        switch (state)
+    IEnumerator FirstState(SpriteRenderer sprite, State toState)
+    {
+        state = State.Transit;
+
+        sprite.color = new Color(1, 1, 1, 1);
+        sprite.material.SetFloat(MoodSlider, toState == State.Happy ? 1 : 0);
+
+        var cutStart = 1f;
+        SetCut(sprite, cutStart);
+
+        for (var i = 0; i < 40; i++)
         {
-            case State.Neutral:
-                sprite.color = new Color(0, 0, 0, 0);
-                break;
-            case State.Happy:
-                sprite.color = new Color(1, 1, 1, 1);
-                sprite.material.SetFloat(MoodSlider, 1);
-                break;
-            case State.Sad:
-                sprite.color = new Color(1, 1, 1, 1);
-                sprite.material.SetFloat(MoodSlider, 0);
-                break;
+            SetCut(sprite, Mathf.Pow(cutStart, 2));
+            cutStart -= (1f / 40);
+
+            yield return new WaitForFixedUpdate();
         }
+        state = toState;
+        foreach (var c in collisions)
+            EnableState(c, state);
+    }
+
+    IEnumerator ChangeState(SpriteRenderer sprite, State toState)
+    {
+        sprite.color = new Color(1, 1, 1, 1);
+        var cutStart = 0.1f;
+        state = State.Transit;
+        for (var i = 0; i < 9; i++)
+        {
+            cutStart += 0.1f;
+            SetCut(sprite, cutStart);
+            yield return new WaitForFixedUpdate();
+        }
+
+        sprite.material.SetFloat(MoodSlider, toState == State.Happy ? 1 : 0);
+
+        for (var i = 0; i < 9; i++)
+        {
+            cutStart -= 0.1f;
+            SetCut(sprite, cutStart);
+            yield return new WaitForFixedUpdate();
+        }
+        state = toState;
+        foreach (var c in collisions)
+            EnableState(c, state);
+    }
+
+    private void SetCut(SpriteRenderer sprite, float cut)
+    {
+        sprite.material.SetFloat(CutSlider, cut + (Mathf.Sin(Time.time * 2) * 0.5f + 0.5f) * 0.1f + 0.1f);
     }
 
     void EnableState(Collider2D collision, State s)
