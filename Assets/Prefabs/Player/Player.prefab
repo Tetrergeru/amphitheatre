@@ -266,6 +266,7 @@ GameObject:
   - component: {fileID: 4618085422705422714}
   - component: {fileID: 4618085422705422715}
   - component: {fileID: 685687570353738380}
+  - component: {fileID: 664376149146143220}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -432,6 +433,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &664376149146143220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618085422705422717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfbb4f12f40f062e9fe08ad8bfb5017, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MusicSourcePrefab: {fileID: 8095081617347650387, guid: 1c9d8007c949b326ba4f970250d24f50, type: 3}
 --- !u!1 &5443832609668360275
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,6 +673,10 @@ PrefabInstance:
       propertyPath: Animator
       value: 
       objectReference: {fileID: 685687570353738380}
+    - target: {fileID: 7993357468338006345, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
+      propertyPath: SoundController
+      value: 
+      objectReference: {fileID: 664376149146143220}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 365ac62a2380b169ca4a25642a3c2bc8, type: 3}
 --- !u!4 &3690627194570503213 stripped

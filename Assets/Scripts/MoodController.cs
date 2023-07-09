@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MoodController : MonoBehaviour
 {
     public Animator Animator;
+    public SoundController SoundController;
 
     private const string MoodSlider = "_SadToHappy";
     private const string CutSlider = "_Cut";
@@ -75,6 +76,7 @@ public class MoodController : MonoBehaviour
         for (var i = 0; i < 40; i++)
         {
             SetCut(sprite, Mathf.Pow(cutStart, 2));
+            SoundController.SetMood(toState, 0.5f + i / 80f);
 
             if (i == 10)
             {
@@ -86,6 +88,7 @@ public class MoodController : MonoBehaviour
             yield return new WaitForFixedUpdate();
         }
 
+        SoundController.SetMood(toState, 1);
         state = toState;
         foreach (var c in collisions)
             EnableState(c, state);
@@ -100,6 +103,7 @@ public class MoodController : MonoBehaviour
         {
             cutStart += 0.1f;
             SetCut(sprite, cutStart);
+            SoundController.SetMood(state, i / 20.0f);
             yield return new WaitForFixedUpdate();
         }
 
@@ -109,6 +113,7 @@ public class MoodController : MonoBehaviour
         {
             cutStart -= 0.1f;
             SetCut(sprite, cutStart);
+            SoundController.SetMood(toState, 0.5f + i / 20.0f);
             yield return new WaitForFixedUpdate();
         }
 
