@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MoodController : MonoBehaviour
 {
+    public Animator Animator;
+
     private const string MoodSlider = "_SadToHappy";
     private const string CutSlider = "_Cut";
 
     public enum State
     {
-        Neutral,
-        Sad,
+        Neutral = 0,
+        Sad = 1,
+        Happy = 2,
         Transit,
-        Happy,
     }
     State state = State.Neutral;
 
@@ -73,10 +75,17 @@ public class MoodController : MonoBehaviour
         for (var i = 0; i < 40; i++)
         {
             SetCut(sprite, Mathf.Pow(cutStart, 2));
+
+            if (i == 10)
+            {
+                Animator.SetInteger("Mood", (int)toState);
+            }
+
             cutStart -= (1f / 40);
 
             yield return new WaitForFixedUpdate();
         }
+        
         state = toState;
         foreach (var c in collisions)
             EnableState(c, state);
@@ -102,7 +111,9 @@ public class MoodController : MonoBehaviour
             SetCut(sprite, cutStart);
             yield return new WaitForFixedUpdate();
         }
+
         state = toState;
+        Animator.SetInteger("Mood", (int)state);
         foreach (var c in collisions)
             EnableState(c, state);
     }
