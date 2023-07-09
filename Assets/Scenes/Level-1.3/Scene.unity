@@ -1156,7 +1156,7 @@ Transform:
   - {fileID: 1722280418}
   - {fileID: 726905927}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &662726405
 PrefabInstance:
@@ -1253,17 +1253,21 @@ PrefabInstance:
       propertyPath: points.Array.data[1]
       value: 
       objectReference: {fileID: 506706516}
+    - target: {fileID: 4770466868938941798, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.8
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.z

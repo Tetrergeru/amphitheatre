@@ -4268,17 +4268,21 @@ PrefabInstance:
       propertyPath: points.Array.data[4]
       value: 
       objectReference: {fileID: 389505156}
+    - target: {fileID: 4770466868938941798, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
+      propertyPath: orthographic size
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -3.07
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.86
       objectReference: {fileID: 0}
     - target: {fileID: 4770466868938941799, guid: c6edbdf796be713499e040c1dea967a5, type: 3}
       propertyPath: m_LocalPosition.z
