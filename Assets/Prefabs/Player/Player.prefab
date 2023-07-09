@@ -357,7 +357,7 @@ MonoBehaviour:
   jump: 5
   coyoteTime: 0.2
   jumpTime: 0.2
-  jumpHeight: 3
+  jumpHeight: 5
   lowFallSpeed: 3
   curve:
     serializedVersion: 2
