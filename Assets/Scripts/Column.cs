@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Column : Intractable
 {
+    public AudioSource BreakSound;
+
     public Rigidbody2D body;
     public Vector2 Force;
     public Vector2 ForcePoint;
@@ -16,6 +18,7 @@ public class Column : Intractable
         {
             body.AddForceAtPosition(Force, ForcePoint + new Vector2(transform.position.x, transform.position.y), ForceMode2D.Impulse);
             enbl = false;
+            BreakSound.Play();
         }
     }
 
