@@ -10,7 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 818945457053789258}
   - component: {fileID: 818945457053789253}
-  m_Layer: 0
+  - component: {fileID: 7993357468338006345}
+  - component: {fileID: 8445883814573400604}
+  m_Layer: 7
   m_Name: MoodCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,3 +86,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7993357468338006345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818945457053789252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29b0d5178d684854284cae3a15f1ef30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!58 &8445883814573400604
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 818945457053789252}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.0034330487, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.4485036
