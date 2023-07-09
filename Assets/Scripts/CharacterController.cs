@@ -14,6 +14,8 @@ public class CharacterController : MonoBehaviour
     public float jumpHeight = 3;
     public float lowFallSpeed = 1f;
     public AnimationCurve curve;
+    // animator state: idle - 0, fly - 1, walk - 2, fall - 3
+    public Animator animator;
 
     Rigidbody2D body;
     float timer = 0.0f;
@@ -33,7 +35,9 @@ public class CharacterController : MonoBehaviour
     {
         if (state == State.Walk) {
             if (timer > 0)
-            timer -= Time.deltaTime; // coyote time
+                timer -= Time.deltaTime; // coyote time
+            else
+                animator.SetInteger("State", 3); // fall
         }
 
         if (state == State.Jump) {
@@ -59,9 +63,17 @@ public class CharacterController : MonoBehaviour
                 if (timer > 0) {
                     Jump(1, Vector3.up);
                     vertical = 0;
-                }
+                } else
+                    animator.SetInteger("State", 1); // fly
             } else {
                 body.gravityScale = 1.0f;
+                if (Mathf.Abs(horizontal) > 0.01f)
+                {
+                    animator.SetInteger("State", 2); // walk
+                    transform.localScale = new Vector3(horizontal < 0 ? -1 : 1, 1, 1);
+                }
+                else
+                    animator.SetInteger("State", 0); // idle
             }
         }
 
@@ -71,6 +83,7 @@ public class CharacterController : MonoBehaviour
     public void Jump(float multiplier, Vector3 vector)
     {
         if (state == State.Jump) return;
+        animator.SetInteger("State", 3); // fall
         lastCurveValue = curve.Evaluate(0);
         state = State.Jump;
         timer = 0;

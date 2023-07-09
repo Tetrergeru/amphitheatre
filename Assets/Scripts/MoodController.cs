@@ -6,6 +6,10 @@ using UnityEngine.SceneManagement;
 
 public class MoodController : MonoBehaviour
 {
+    public Material MoodMaterial;
+
+    private const string MoodSlider = "SadToHappy";
+
     public enum State { Neutral, Sad, Happy }
     State state = State.Neutral;
 
@@ -35,9 +39,17 @@ public class MoodController : MonoBehaviour
         var sprite = GetComponent<SpriteRenderer>();
         switch (state)
         {
-            case State.Neutral: sprite.color = new Color(0, 0, 0, 0); break;
-            case State.Happy: sprite.color = new Color(1, 1, 0.5f, 0.5f); break;
-            case State.Sad: sprite.color = new Color(0, 0, 0); break;
+            case State.Neutral:
+                sprite.color = new Color(0, 0, 0, 0);
+                break;
+            case State.Happy:
+                sprite.color = new Color(1, 1, 1, 1);
+                sprite.material.SetFloat(MoodSlider, 1);
+                break;
+            case State.Sad:
+                sprite.color = new Color(1, 1, 1, 1);
+                sprite.material.SetFloat(MoodSlider, 0);
+                break;
         }
     }
 
