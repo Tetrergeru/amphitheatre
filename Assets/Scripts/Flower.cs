@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Flower : MonoBehaviour
 {
+    public AudioSource JumpAudio;
+
     public Animator animator;
     public float JumpMultiplier = 1;
 
@@ -13,5 +15,6 @@ public class Flower : MonoBehaviour
         animator.SetTrigger("Jump");
         var player = collision.collider.GetComponent<CharacterController>();
         player.Jump(JumpMultiplier, transform.TransformDirection(Vector3.up));
+        JumpAudio.Play();
     }
 }

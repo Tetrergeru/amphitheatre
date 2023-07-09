@@ -5,6 +5,9 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterController : MonoBehaviour
 {
+    public AudioSource RunAudio;
+    public AudioSource JumpAudio;
+
     public enum State { Walk, Jump }
 
     public float speed = 10;
@@ -33,14 +36,16 @@ public class CharacterController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (state == State.Walk) {
+        if (state == State.Walk)
+        {
             if (timer > 0)
                 timer -= Time.deltaTime; // coyote time
             else
                 animator.SetInteger("State", 3); // fall
         }
 
-        if (state == State.Jump) {
+        if (state == State.Jump)
+        {
             timer += Time.deltaTime / jumpTime;
             float curveValue = curve.Evaluate(timer);
             float delta = curveValue - lastCurveValue;
@@ -56,24 +61,45 @@ public class CharacterController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal") * speed;
         float vertical = body.velocity.y;
 
-        if (state == State.Walk) {
-            if (Input.GetAxis("Jump") > 0.01f) {
+        if (state == State.Walk)
+        {
+            if (Input.GetAxis("Jump") > 0.01f)
+            {
                 body.gravityScale = 0;
                 vertical = -lowFallSpeed;
-                if (timer > 0) {
+                if (timer > 0)
+                {
                     Jump(1, Vector3.up);
                     vertical = 0;
-                } else
+
+                    JumpAudio.Play();
+                }
+                else
+                {
                     animator.SetInteger("State", 1); // fly
-            } else {
+
+                    if (RunAudio.isPlaying)
+                        RunAudio.Stop();
+                }
+            }
+            else
+            {
                 body.gravityScale = 1.0f;
                 if (Mathf.Abs(horizontal) > 0.01f)
                 {
+                    if (!RunAudio.isPlaying)
+                        RunAudio.Play();
+
                     animator.SetInteger("State", 2); // walk
                     transform.localScale = new Vector3(horizontal < 0 ? -1 : 1, 1, 1);
                 }
                 else
+                {
+                    if (RunAudio.isPlaying)
+                        RunAudio.Stop();
+
                     animator.SetInteger("State", 0); // idle
+                }
             }
         }
 
@@ -83,6 +109,7 @@ public class CharacterController : MonoBehaviour
     public void Jump(float multiplier, Vector3 vector)
     {
         if (state == State.Jump) return;
+
         animator.SetInteger("State", 3); // fall
         lastCurveValue = curve.Evaluate(0);
         state = State.Jump;
