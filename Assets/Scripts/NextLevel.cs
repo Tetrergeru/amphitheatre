@@ -8,6 +8,6 @@ public class NextLevel : MonoBehaviour
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.GetComponent<CharacterController>() == null) return;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

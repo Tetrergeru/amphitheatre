@@ -2063,6 +2063,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Back
       objectReference: {fileID: 0}
+    - target: {fileID: 1729109772122987320, guid: 00ebc822bac868e4c8290379ee8d2887, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1729109772122987463, guid: 00ebc822bac868e4c8290379ee8d2887, type: 3}
       propertyPath: m_RootOrder
       value: 6

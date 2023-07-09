@@ -58,7 +58,7 @@ public class MoodController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
@@ -85,7 +85,7 @@ public class MoodController : MonoBehaviour
 
             yield return new WaitForFixedUpdate();
         }
-        
+
         state = toState;
         foreach (var c in collisions)
             EnableState(c, state);

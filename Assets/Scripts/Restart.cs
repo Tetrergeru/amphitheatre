@@ -8,6 +8,6 @@ public class Restart : MonoBehaviour
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.GetComponent<CharacterController>() == null) return;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }

@@ -10,6 +10,6 @@ public class Rose : MonoBehaviour
     void OnCollisionStay2D(Collision2D collision)
     {
         if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Enabled")) return;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 }
